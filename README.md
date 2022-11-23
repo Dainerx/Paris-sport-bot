@@ -16,11 +16,17 @@ By default, the bot will hold your reservation for 15 minutes without paying. It
 
 `python paris-tennis.py -d 4 -ho 14h -n Puteaux`
 
+![image](https://user-images.githubusercontent.com/19507493/203551259-17fb4365-25e4-4d4b-9a7e-f61fbefe30db.png)
+
+
 ### Pay
 
 You can pay directly for your reservation, however **you have to buy "Carnet de réservation"** first.
 
 `python paris-tennis.py -d 4 -ho 14h -n Puteaux -m pay`
+
+![image](https://user-images.githubusercontent.com/19507493/203551803-648b3842-111d-49e8-958e-75dec507001b.png)
+
 
 ### Command arguments
 
