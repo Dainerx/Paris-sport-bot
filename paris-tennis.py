@@ -1,3 +1,4 @@
+# Innovated by Oussama Ben Ghorbel and Ali Hadi at Murex
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 import datetime
@@ -103,30 +104,27 @@ def book_and_pay(driver, hour, day, name):
             time.sleep(1)
             driver.find_element_by_id('submit').click()
             logging.info("Booked and payed a reservation at {0}, in {1}, {2} days from today".format(hour, name, day))
-            notification.notify(
-                title='Paris Sport Bot',
-                message="Booked and payed a reservation at {0}, in {1}, {2} days from today".format(hour, name, day),
-                app_icon=None,
-                timeout=10,
-            )
+            sys_notify(
+                "Booked and payed a reservation at {0}, in {1}, {2} days from today".format(hour, name, day))
         else:
             logging.info(
-                "Held a reservation at {0}, in {1}, {2} days from today - you have 10 minutes to manually pay".format(
-                    hour,
-                    name,
-                    day))
-            notification.notify(
-                title='Paris Sport Bot',
-                message="Held a reservation at {0}, in {1}, {2} days from today - you have 10 minutes to manually pay".format(
-                    hour,
-                    name,
-                    day),
-                app_icon=None,
-                timeout=10,
-            )
+                "Held a reservation at {0}, in {1}, {2} days from today - you have 10 minutes to manually pay"
+                .format(hour, name, day))
+            sys_notify(
+                "Held a reservation at {0}, in {1}, {2} days from today - you have 10 minutes to manually pay"
+                .format(hour, name, day))
     except Exception as e:
         logging.error("Failure to book and pay", e)
         raise e
+
+
+def sys_notify(message, title='Paris Sport Bot', timeout=10, app_icon=None):
+    notification.notify(
+        title=title,
+        message=message,
+        app_icon=app_icon,
+        timeout=timeout
+    )
 
 
 def check_arguments(args):
